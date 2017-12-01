@@ -135,7 +135,7 @@ Blockly.Blocks['mbedSensors_getSample'] = {
             input.removeField(toRemove[j]);
         }
         if (this.sensorType_ == 'GESTURE_ACTIVE') {
-            input.appendField(gesture, 'GESTURE');
+            input.appendField(gesture, 'MODE');
             this.appendValue_('BOOL');
             this.setOutput(true, 'Boolean');
         } else if (this.sensorType_ == 'COMPASS_ANGLE') {
@@ -180,7 +180,7 @@ Blockly.Blocks['mbedSensors_getSample'] = {
             this.appendValue_('NUM_REV', 50);
             this.setOutput(true, 'Number');
         } else if (this.sensorType_ == 'ACCELERATION') {
-            input.appendField(direction, 'DIRECTION');
+            input.appendField(direction, 'MODE');
             this.appendValue_('NUM_REV', 20);
             this.setOutput(true, 'Number');
         } else if (this.sensorType_ == 'ORIENTATION') {
@@ -281,16 +281,16 @@ Blockly.Blocks['mbedSensors_pin_isTouched'] = {
 
 Blockly.Blocks['mbedSensors_gesture_isActive'] = {
     /**
-     * Get the current distance from the ultrasonic sensor.
+     * Get the current gesture from the gesture sensor.
      *
-     * @constructs mbedSensors_ultrasonic_getDistance
+     * @constructs mbedSensors_gesture_isActive
      * @this.Blockly.Block
      * @param {String/dropdown}
-     *            MODE - Distance or Presence
+     *            MODE - Gesture
      * @param {String/dropdown}
-     *            SENSORPORT - 1, 2, 3 or 4
+     *            SENSORPORT - none
      * @returns immediately
-     * @returns {Number}
+     * @returns {Boolean}
      * @memberof Block
      */
     init : function() {
@@ -298,7 +298,7 @@ Blockly.Blocks['mbedSensors_gesture_isActive'] = {
         var gesture = new Blockly.FieldDropdown([ [ Blockly.Msg.SENSOR_GESTURE_UP, 'UP' ], [ Blockly.Msg.SENSOR_GESTURE_DOWN, 'DOWN' ],
                 [ Blockly.Msg.SENSOR_GESTURE_FACE_UP, 'FACE_UP' ], [ Blockly.Msg.SENSOR_GESTURE_FACE_DOWN, 'FACE_DOWN' ],
                 [ Blockly.Msg.SENSOR_GESTURE_SHAKE, 'SHAKE' ], [ Blockly.Msg.SENSOR_GESTURE_FREEFALL, 'FREEFALL' ] ]); // [ 'left', 'LEFT' ], [ 'right', 'RIGHT' ], [ '3g', 'G3' ], [ '6g', 'G6' ], [ '8g', 'G8' ] ]);
-        this.appendDummyInput().appendField(Blockly.Msg.SENSOR_GESTURE).appendField(gesture, 'GESTURE').appendField(Blockly.Msg.SENSOR_GESTURE_ACTIVE);
+        this.appendDummyInput().appendField(Blockly.Msg.SENSOR_GESTURE).appendField(gesture, 'MODE').appendField(Blockly.Msg.SENSOR_GESTURE_ACTIVE);
         this.setOutput(true, 'Boolean');
         this.setTooltip(Blockly.Msg.ULTRASONIC_GETSAMPLE_TOOLTIP);
     }
@@ -573,7 +573,7 @@ Blockly.Blocks['mbedSensors_acceleration_getSample'] = {
     init : function() {
         this.setColour(Blockly.CAT_SENSOR_RGB);
         var direction = new Blockly.FieldDropdown([ [ 'x', 'X' ], [ 'y', 'Y' ], [ 'z', 'Z' ], [ Blockly.Msg.STRENGTH, 'STRENGTH' ] ]);
-        this.appendDummyInput().appendField(Blockly.Msg.SENSOR_GET_SAMPLE).appendField(Blockly.Msg.ACCELERATION).appendField(direction, 'DIRECTION');
+        this.appendDummyInput().appendField(Blockly.Msg.SENSOR_GET_SAMPLE).appendField(Blockly.Msg.ACCELERATION).appendField(direction, 'MODE');
         this.setOutput(true, 'Number');
         this.setTooltip(Blockly.Msg.ACCELERATION_TOOLTIP);
     }
